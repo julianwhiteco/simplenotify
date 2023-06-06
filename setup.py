@@ -13,7 +13,7 @@ if platform.system() == 'Darwin':
 
 setup(
     name='simplenotify',
-    version='0.32',
+    version='230606',
     description='A simple Python library for sending interactive notifications across multiple operating systems.',
     long_description=open('README.md', encoding='utf-8').read(),
     long_description_content_type='text/markdown',
