@@ -1,36 +1,28 @@
-import objc
-from Foundation import NSUserNotification, NSUserNotificationCenter
-
-
-# Text notification
-def send_notification(title, subtitle, info_text, delay=0, sound=False):
-    notification = NSUserNotification.alloc().init()
-    notification.setTitle_(title)
-    notification.setSubtitle_(subtitle)
-    notification.setInformativeText_(info_text)
-    notification.setDeliveryDate_(NSDate.dateWithTimeInterval_sinceDate_(delay, NSDate.date()))
-    notification.setSoundName_("NSUserNotificationDefaultSoundName" if sound else None)
-
-    NSUserNotificationCenter.defaultUserNotificationCenter().scheduleNotification_(notification)
-
-
-# Interactive notification
-from Foundation import NSDistributedNotificationCenter
-objc.loadBundleFunctions(Foundation, globals(), [("NSUserNotificationActivationTypeActionButtonClicked", b"I")])
-
-def notify(title, subtitle, info_text, delay=0, sound=False, userInfo={}, actionButton=None):
-    notification = NSUserNotification.alloc().init()
-    notification.setTitle_(str(title))
-    notification.setSubtitle_(str(subtitle))
-    notification.setInformativeText_(str(info_text))
-    notification.setUserInfo_(userInfo)
-    if actionButton:
-        notification.setActionButtonTitle_(str(actionButton))
-    else:
-        notification.setHasActionButton_(False)
-    notification.setDeliveryDate_(Foundation.NSDate.dateWithTimeInterval_sinceDate_(delay, Foundation.NSDate.date()))
-    NSUserNotificationCenter.defaultUserNotificationCenter().setDelegate_(AppDelegate.alloc().init())
-    NSUserNotificationCenter.defaultUserNotificationCenter().scheduleNotification_(notification)
-
-
-send_notification("Hello, world!", "Subtitle", "This is a notification", delay=1, sound=True)
+# import objc
+# from Foundation import NSUserNotification, NSUserNotificationCenter, NSUserNotificationDefaultSoundName
+#
+#
+# # Note, the following uses the deprecated NSUserNotification.
+# class MacOSNotification:
+#     def __init__(self, title, subtitle, info_text, sound=True, action_button_text=None):
+#         self.title = title
+#         self.subtitle = subtitle
+#         self.info_text = info_text
+#         self.sound = sound
+#         self.action_button_text = action_button_text
+#
+#     def send(self):
+#         notification = NSUserNotification.alloc().init()
+#         notification.setTitle_(self.title)
+#         notification.setSubtitle_(self.subtitle)
+#         notification.setInformativeText_(self.info_text)
+#
+#         if self.action_button_text:
+#             notification.setActionButtonTitle_(self.action_button_text)
+#             notification.set_hasActionButton_(True)
+#
+#         if self.sound:
+#             notification.setSoundName_(NSUserNotificationDefaultSoundName)
+#
+#         center = NSUserNotificationCenter.defaultUserNotificationCenter()
+#         center.scheduleNotification_(notification)

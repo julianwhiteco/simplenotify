@@ -5,5 +5,5 @@ SimpleNotify is a user-friendly Python 3 library designed to simplify the proces
 
 ## Acknowledgements
 This project is built upon the work of:
-- [Developer Name](Link to their GitHub profile or website) for [Project Name](Link to Project)
-- [Developer Name](Link to their GitHub profile or website) for [Project Name](Link to Project)
+- [Jorrick Sleijster](https://github.com/Jorricks) for their `macos-notifications` Python 3 library ([available here](https://github.com/Jorricks/macos-notifications/tree/main/docs))
+- [GitHub30](https://github.com/GitHub30) for their `win11toast` Python 3 library ([available here](https://github.com/GitHub30/win11toast))
