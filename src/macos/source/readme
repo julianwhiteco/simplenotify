@@ -1,0 +1,2 @@
+//A simple listener.app will need to be made. Python will open this, send it notifications data over an internal port, and then close it.
+//Xcode source will be supplied here.
