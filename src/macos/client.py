@@ -1,28 +1,14 @@
-import objc
-from Foundation import NSUserNotification, NSUserNotificationCenter, NSUserNotificationDefaultSoundName
+import subprocess
 
 
-# Note, the following uses the deprecated NSUserNotification.
-class MacOSNotification:
-    def __init__(self, title, subtitle, info_text, sound=True, action_button_text=None):
-        self.title = title
-        self.subtitle = subtitle
-        self.info_text = info_text
-        self.sound = sound
-        self.action_button_text = action_button_text
+def send_notification(title, text, subtitle=None, sound=True):
+    sound_arg = 'sound name "Submarine"' if sound else ''
+    subtitle_arg = f'subtitle "{subtitle}"' if subtitle else ''
 
-    def send(self):
-        notification = NSUserNotification.alloc().init()
-        notification.setTitle_(self.title)
-        notification.setSubtitle_(self.subtitle)
-        notification.setInformativeText_(self.info_text)
+    applescript = f'display notification "{text}" with title "{title}" {subtitle_arg} {sound_arg}'
 
-        if self.action_button_text:
-            notification.setActionButtonTitle_(self.action_button_text)
-            notification.set_hasActionButton_(True)
+    subprocess.run(["osascript", "-e", applescript])
 
-        if self.sound:
-            notification.setSoundName_(NSUserNotificationDefaultSoundName)
 
-        center = NSUserNotificationCenter.defaultUserNotificationCenter()
-        center.scheduleNotification_(notification)
+# Example usage:
+send_notification("Hello", "This is a simple toast prompt", "Subtitle")
