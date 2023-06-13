@@ -1,17 +1,17 @@
 import subprocess
 
 
-def notification_item_text(title, text, subtitle=None, sound=True):
+def notification_item_text(appname, text, subtitle=None, sound=True):
     sound_arg = 'sound name "Submarine"' if sound else ''
     subtitle_arg = f'subtitle "{subtitle}"' if subtitle else ''
-    applescript = f'display notification "{text}" with title "{title}" {subtitle_arg} {sound_arg}'
+    applescript = f'display notification "{text}" with title "{appname}" {subtitle_arg} {sound_arg}'
     subprocess.run(["osascript", "-e", applescript])
 
 
-def notification_item_button(title, message, button_text, url):
+def notification_item_button(appname, title, message, button_text, url):
     dialog_applescript = f'''
     tell app "System Events"
-        display dialog "{message}" buttons {{"Cancel", "{button_text}"}} with title "{title}"
+        display dialog "{message}" buttons {{"Cancel", "{button_text}"}} with title "{appname}"
     end tell
     '''
 
@@ -28,7 +28,7 @@ def notification_item_button(title, message, button_text, url):
 
 
 # Example usage:
-notification_item_button(title="Software Update Available", message="A new version of the software is available. Would you like to update now?", button_text="Update", url="https://www.example.com/update")
+#notification_item_button(title="Software Update Available", message="A new version of the software is available. Would you like to update now?", button_text="Update", url="https://www.example.com/update")
 
 # Example usage:
-notification_item_text("Hello", "This is a simple toast prompt", "Subtitle")
+#notification_item_text("Everlast", "This is a simple toast prompt", "Subtitle Optional")
