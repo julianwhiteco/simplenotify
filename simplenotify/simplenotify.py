@@ -44,7 +44,3 @@ def notification_button(appname, title, body, button1, argument1, button2=None, 
 
     # if 'Linux' in system():
     #     from src.linux.client import ...
-
-
-notification_button("everlast", "title", "body", "Button1", "https://google.com/")
-notification_text("appname", "title", "body")
