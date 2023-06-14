@@ -7,13 +7,14 @@ def notification_text(appname, title, body=None):
         exit(1)
 
     if 'Windows' in system():
-        from src.windows.client import NotificationClass
+        # from .func_win import NotificationClass
+        from func_win import NotificationClass
         notifier = NotificationClass(appname)  # Add this as a function arg.
         # todo: Add appname to windows client.
         return notifier.toast(title, body)
 
     if 'Darwin' in system():
-        from src.macos.client import notification_item_text
+        from .func_mac import notification_item_text
         return notification_item_text(appname, body, title, sound=False)
 
 #    if 'Linux' in system():
@@ -26,16 +27,17 @@ def notification_button(appname, title, body, button1, argument1, button2=None, 
         exit(1)
 
     if 'Windows' in system():
-        from src.windows.client import NotificationClass
+        # from .func_win import NotificationClass
+        from func_win import NotificationClass
         buttons = [{'activationType': 'protocol', 'arguments': argument1, 'content': button1}]
         if button2 is not None and argument2 is not None:
             buttons.append({'activationType': 'protocol', 'arguments': argument2, 'content': button2})
         notifier = NotificationClass(appname)  # Add this as a function arg.
         # todo: Add appname to windows client.
-        return notifier.toast(appname, title, body, buttons=buttons)
+        return notifier.toast(title, body, buttons=buttons)
 
     if 'Darwin' in system():
-        from src.macos.client import notification_item_button
+        from .func_mac import notification_item_button
         if button2 is not None and argument2 is not None:
             print("Second notification button is not currently supported by MacOS, defaulting to Cancel.")
             button2 = ""
@@ -44,3 +46,7 @@ def notification_button(appname, title, body, button1, argument1, button2=None, 
 
     # if 'Linux' in system():
     #     from src.linux.client import ...
+
+
+notification_button("everlast", "title", "body", "Button1", "https://google.com/")
+notification_text("appname", "title", "body")

@@ -1,4 +1,4 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 import platform
 
 install_requires = []
@@ -33,5 +33,6 @@ setup(
         'Operating System :: MacOS :: MacOS X'
     ],
     install_requires=install_requires,
-    py_modules=['simplenotify']
+    py_modules=['simplenotify'],
+    packages=find_packages(),
 )
