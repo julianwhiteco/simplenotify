@@ -104,6 +104,10 @@ class NotificationClass:
         return self.notification
 
     async def toast_async(self, title=None, body=None, on_click=print, duration=None, progress=None, button=None, buttons=[], on_dismissed=print, on_failed=print):
+        on_click = on_click if callable(on_click) else print
+        on_dismissed = on_dismissed if callable(on_dismissed) else print
+        on_failed = on_failed if callable(on_failed) else print
+
         self.send_notification(title, body, on_click, duration, progress, button, buttons)
         loop = asyncio.get_running_loop()
         futures = []

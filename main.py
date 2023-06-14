@@ -1,4 +1,3 @@
-# Don't import modules here. Only do it in the OS fire-off functions.
 from platform import system
 
 
