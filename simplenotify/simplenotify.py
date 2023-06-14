@@ -7,8 +7,7 @@ def notification_text(appname, title, body=None):
         exit(1)
 
     if 'Windows' in system():
-        # from .func_win import NotificationClass
-        from func_win import NotificationClass
+        from .func_win import NotificationClass
         notifier = NotificationClass(appname)  # Add this as a function arg.
         # todo: Add appname to windows client.
         return notifier.toast(title, body)
@@ -27,8 +26,7 @@ def notification_button(appname, title, body, button1, argument1, button2=None, 
         exit(1)
 
     if 'Windows' in system():
-        # from .func_win import NotificationClass
-        from func_win import NotificationClass
+        from .func_win import NotificationClass
         buttons = [{'activationType': 'protocol', 'arguments': argument1, 'content': button1}]
         if button2 is not None and argument2 is not None:
             buttons.append({'activationType': 'protocol', 'arguments': argument2, 'content': button2})
